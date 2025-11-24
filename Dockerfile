@@ -1,20 +1,6 @@
-# Imagen base de Node
-FROM node:18-alpine
+FROM alpine:latest
 
-# Carpeta de la app dentro del contenedor
-WORKDIR /app
+# Crea un archivo para demostrar que la imagen se construyó
+RUN echo "Imagen creada correctamente" > /mensaje.txt
 
-# Copiamos package.json y package-lock.json
-COPY package*.json ./
-
-# Instalamos dependencias
-RUN npm install --only=production
-
-# Copiamos todo el código
-COPY . .
-
-# Puerto expuesto (cambia si tu app usa otro)
-EXPOSE 3000
-
-# Comando de inicio
-CMD ["npm", "start"]
+CMD ["cat", "/mensaje.txt"]
